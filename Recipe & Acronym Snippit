@@ -1,0 +1,873 @@
+ <!-- MAIN WORKSPACE STAGE -->
+  <main class="stage-wrap">
+
+    <!-- =======================================================================
+         ★ 2025 NEW RECIPE CARDS DECK (ALL 76 RECIPES, LOTUS & PREP CARDS)
+         ======================================================================= -->
+    <div class="doc-pane" id="doc-recipes2025">
+      <div class="recipe-control-bar">
+        <div class="recipe-search-row">
+          <input type="text" id="recipe-search" class="recipe-search-input" placeholder="🔍 Search any drink, syrup, Lotus recipe, or prep standard (e.g., Flying Monkey, Matcha, Cold Foam, Cram Session)..." oninput="renderRecipeDeck()">
+          <button class="ui-btn solid-gold" onclick="addNewCustomRecipeCard()">+ New Blank Recipe Card</button>
+        </div>
+        <div class="cat-pills" id="recipe-cat-pills">
+          <button class="cat-pill active" onclick="setRecipeCat('ALL', this)">All Categories (76)</button>
+          <button class="cat-pill" onclick="setRecipeCat('HOT CLASSICS', this)">Hot Classics</button>
+          <button class="cat-pill" onclick="setRecipeCat('ICED CLASSICS', this)">Iced Classics</button>
+          <button class="cat-pill" onclick="setRecipeCat('HOT STEAMERS/COCOA', this)">Steamers &amp; Cocoa</button>
+          <button class="cat-pill" onclick="setRecipeCat('HOT FAVORITES', this)">Hot Favorites</button>
+          <button class="cat-pill" onclick="setRecipeCat('ICED FAVORITES', this)">Iced Favorites</button>
+          <button class="cat-pill" onclick="setRecipeCat('SEASONALS', this)">Hot &amp; Iced Seasonals</button>
+          <button class="cat-pill" onclick="setRecipeCat('TEAS & MATCHA', this)">Hot &amp; Iced Teas</button>
+          <button class="cat-pill" onclick="setRecipeCat('LEMONADES & ENERGY', this)">Lemonades, Refreshers &amp; Lotus</button>
+          <button class="cat-pill" onclick="setRecipeCat('ON-TAP', this)">On-Tap Cold Brew &amp; Nitro</button>
+          <button class="cat-pill" onclick="setRecipeCat('TWISTERS', this)">Twisters &amp; Smoothies</button>
+          <button class="cat-pill" onclick="setRecipeCat('PREPARATION', this)">Bar Prep Standards</button>
+        </div>
+      </div>
+
+      <div id="recipe-deck-mount"></div>
+    </div>
+
+    <!-- =======================================================================
+         1. DRINK ACRONYMS & CUP MARKING KEY (WITH AUTHENTIC PINK "X" DIAGRAM)
+         ======================================================================= -->
+    <div class="doc-pane" id="doc-acronyms" style="display:none;">
+      <section class="page" contenteditable="true">
+        <div>
+          <div class="doc-banner">
+            <div class="brick-accent-bar"></div>
+            <div class="banner-row">
+              <div>
+                <div class="kicker"><span class="kicker-dot"></span> BAR &amp; POS TICKET REFERENCE</div>
+                <div class="page-main-title">BRICK ROAD COFFEE — DRINK ACRONYMS</div>
+                <div class="page-meta-line">Quick reference for ticket codes. &nbsp;<strong>( ) = a question to ask the customer.</strong></div>
+              </div>
+              <div class="banner-logo-wrap">
+                <img class="banner-logo brand-logo-sync" src="ed44a3_b1fdefbb04ec48569d63100018449d35~mv2.png" alt="Brick Road Coffee" onerror="this.parentElement.style.display='none'">
+              </div>
+            </div>
+          </div>
+
+          <div class="cols-4" style="align-items:start;">
+            <div class="sec-block">
+              <div class="sec-title gold">Syrups / Flavors</div>
+              <div class="sec-body flush">
+                <table class="craft-table compact">
+                  <tbody>
+                    <tr><td><strong>SF-flavor</strong></td><td>Sugar-Free Options</td></tr>
+                    <tr><td><strong>BAN</strong></td><td>Banana</td></tr>
+                    <tr><td><strong>BlkB</strong></td><td>Blackberry</td></tr>
+                    <tr><td><strong>BR</strong></td><td>Blue Raspberry</td></tr>
+                    <tr><td><strong>CR</strong></td><td>Caramel Sauce</td></tr>
+                    <tr><td><strong>CMK</strong></td><td>Cereal Milk (House-Made)</td></tr>
+                    <tr><td><strong>CHER</strong></td><td>Cherry</td></tr>
+                    <tr><td><strong>CIN</strong></td><td>Cinnamon</td></tr>
+                    <tr><td><strong>CO</strong></td><td>Coconut</td></tr>
+                    <tr><td><strong>CB</strong></td><td>Cookie Butter</td></tr>
+                    <tr><td><strong>DP</strong></td><td>Desert Pear</td></tr>
+                    <tr><td><strong>GA</strong></td><td>Apple (Granny Smith)</td></tr>
+                    <tr><td><strong>G</strong></td><td>Guava</td></tr>
+                    <tr><td><strong>HZ</strong></td><td>Hazelnut</td></tr>
+                    <tr><td><strong>Hon</strong></td><td>Honey</td></tr>
+                    <tr><td><strong>IC</strong></td><td>Irish Cream</td></tr>
+                    <tr><td><strong>Kiwi</strong></td><td>Kiwi</td></tr>
+                    <tr><td><strong>Lav</strong></td><td>Lavender</td></tr>
+                    <tr><td><strong>M</strong></td><td>Mocha</td></tr>
+                    <tr><td><strong>OR</strong></td><td>Orange</td></tr>
+                    <tr><td><strong>PF</strong></td><td>Passion Fruit</td></tr>
+                    <tr><td><strong>WP</strong></td><td>Peach, White</td></tr>
+                    <tr><td><strong>PCS</strong></td><td>Pure Cane Sugar</td></tr>
+                    <tr><td><strong>R</strong></td><td>Raspberry</td></tr>
+                    <tr><td><strong>SBS</strong></td><td>Spiced Brown Sugar</td></tr>
+                    <tr><td><strong>S</strong></td><td>Strawberry</td></tr>
+                    <tr><td><strong>TM</strong></td><td>Toasted Marshmallow</td></tr>
+                    <tr><td><strong>V</strong></td><td>Vanilla</td></tr>
+                    <tr><td><strong>W</strong></td><td>Watermelon</td></tr>
+                    <tr><td><strong>WM</strong></td><td>White Mocha</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <div>
+              <div class="sec-block">
+                <div class="sec-title">Marking Key</div>
+                <div class="sec-body" style="background:#fff8dc; padding:12px 10px; text-align:center;">
+                  <div style="position:relative; width:100%; height:165px; border:2px solid var(--espresso); border-radius:6px; background:#fff8dc; overflow:hidden;">
+                    <svg viewBox="0 0 200 165" style="width:100%; height:100%; display:block;">
+                      <line x1="12" y1="12" x2="188" y2="153" stroke="#ff7dcb" stroke-width="5" stroke-linecap="round"/>
+                      <line x1="188" y1="12" x2="12" y2="153" stroke="#ff7dcb" stroke-width="5" stroke-linecap="round"/>
+                    </svg>
+                    <div style="position:absolute; top:9px; left:0; right:0; text-align:center; font-family:'Josefin Sans',sans-serif; font-weight:700; font-size:10.5pt; color:#28140a;">DRINK</div>
+                    <div style="position:absolute; top:50%; left:8px; transform:translateY(-50%); text-align:left; font-family:'Josefin Sans',sans-serif; font-weight:700; font-size:10pt; color:#28140a;">FLAVOR</div>
+                    <div style="position:absolute; top:50%; right:8px; transform:translateY(-50%); text-align:right; font-family:'Josefin Sans',sans-serif; font-weight:700; font-size:10pt; color:#28140a;">MILK</div>
+                    <div style="position:absolute; bottom:9px; left:0; right:0; text-align:center; font-family:'Josefin Sans',sans-serif; font-weight:700; font-size:10pt; color:#28140a;">MODIFIER</div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="sec-block">
+                <div class="sec-title gold">Milk</div>
+                <div class="sec-body flush">
+                  <table class="craft-table compact">
+                    <tbody>
+                      <tr><td><strong>NF</strong></td><td>Nonfat / Skim</td></tr>
+                      <tr><td><strong>2%</strong></td><td>2%</td></tr>
+                      <tr><td><strong>W</strong></td><td>Whole</td></tr>
+                      <tr><td><strong>B</strong></td><td>Breve (Cream or Half &amp; Half)</td></tr>
+                      <tr><td><strong>HC</strong></td><td>Heavy Cream</td></tr>
+                      <tr><td><strong>A</strong></td><td>Almond Milk</td></tr>
+                      <tr><td><strong>O</strong></td><td>Oat Milk</td></tr>
+                      <tr><td><strong>C</strong></td><td>Coconut Milk</td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+
+              <div class="sec-block">
+                <div class="sec-title gold">Modifications</div>
+                <div class="sec-body flush">
+                  <table class="craft-table compact">
+                    <tbody>
+                      <tr><td><strong>Total # of Shots</strong></td><td>Extra Espresso Shot</td></tr>
+                      <tr><td><strong>Flav-CF</strong></td><td>Cold Foam</td></tr>
+                      <tr><td><strong>VSC</strong></td><td>Vanilla Sweet Cream</td></tr>
+                      <tr><td><strong>WC</strong></td><td>Whipped Cream</td></tr>
+                      <tr><td><strong>XHot</strong></td><td>Extra Hot</td></tr>
+                      <tr><td><strong>Lt ice</strong></td><td>Light Ice</td></tr>
+                      <tr><td><strong>X ice</strong></td><td>Extra Ice</td></tr>
+                      <tr><td><strong>D</strong></td><td>Decaf</td></tr>
+                      <tr><td><strong>1/2 Caf</strong></td><td>Half-Caf</td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <div class="sec-block">
+                <div class="sec-title gold">Favorites (2%)</div>
+                <div class="sec-body flush">
+                  <table class="craft-table compact">
+                    <tbody>
+                      <tr><td><strong>CRL</strong></td><td>Cinnamon Roll Latte</td></tr>
+                      <tr><td><strong>SBS</strong></td><td>Iced Spiced Brown Sugar Shaken Latte</td></tr>
+                      <tr><td><strong>FR</strong></td><td>French Revolution Latte</td></tr>
+                      <tr><td><strong>SCL</strong></td><td>Spiced Cookie Latte</td></tr>
+                      <tr><td><strong>HLL</strong></td><td>Honey Lavender Latte</td></tr>
+                      <tr><td><strong>BBL</strong></td><td>Blackberry (Lavender) Latte</td></tr>
+                      <tr><td><strong>FM</strong></td><td>Flying Monkey</td></tr>
+                      <tr><td><strong>CML</strong></td><td>Cereal Milk Latte</td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+
+              <div class="sec-block">
+                <div class="sec-title gold">Classics (Sweetened or Cream)</div>
+                <div class="sec-body flush">
+                  <table class="craft-table compact">
+                    <tbody>
+                      <tr><td><strong>A</strong></td><td>Americano</td></tr>
+                      <tr><td><strong>BC</strong></td><td>Drip Coffee</td></tr>
+                      <tr><td><strong>CAL</strong></td><td>Cafe Au Lait</td></tr>
+                      <tr><td><strong>C</strong></td><td>Cappuccino</td></tr>
+                      <tr><td><strong>Cort</strong></td><td>Cortado</td></tr>
+                      <tr><td><strong>FW</strong></td><td>Flat White</td></tr>
+                      <tr><td><strong>L</strong></td><td>Latte</td></tr>
+                      <tr><td><strong>M</strong></td><td>Mocha</td></tr>
+                      <tr><td><strong>Skn E</strong></td><td>Shaken Espresso</td></tr>
+                      <tr><td><strong>HC</strong></td><td>Hot Cocoa</td></tr>
+                      <tr><td><strong>CM</strong></td><td>Caramel Macchiato</td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+
+              <div class="sec-block">
+                <div class="sec-title gold">On Tap (Sweetened or Cream)</div>
+                <div class="sec-body flush">
+                  <table class="craft-table compact">
+                    <tbody>
+                      <tr><td><strong>UCB</strong></td><td>Unity Cold Brew (med-light)</td></tr>
+                      <tr><td><strong>RCB</strong></td><td>Revolution Cold Brew (med-dark)</td></tr>
+                      <tr><td><strong>NCB</strong></td><td>Nitro Cold Brew</td></tr>
+                      <tr><td><strong>WCB</strong></td><td>Wicked Cold Brew</td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+
+              <div class="sec-block">
+                <div class="sec-title gold">Seasonal Drinks</div>
+                <div class="sec-body flush">
+                  <table class="craft-table compact">
+                    <tbody>
+                      <tr><td style="width:30%; height:25px; background:#fff8dc;"></td><td style="background:#fff8dc;"></td></tr>
+                      <tr><td style="height:25px;"></td><td></td></tr>
+                      <tr><td style="height:25px; background:#fff8dc;"></td><td style="background:#fff8dc;"></td></tr>
+                      <tr><td style="height:25px;"></td><td></td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <div class="sec-block">
+                <div class="sec-title gold">Refreshers</div>
+                <div class="sec-body flush">
+                  <table class="craft-table compact">
+                    <tbody>
+                      <tr><td><strong>DR</strong></td><td>Dragonfruit Refresher</td></tr>
+                      <tr><td><strong>KR</strong></td><td>Kiwi Refresher</td></tr>
+                      <tr><td><strong>SR</strong></td><td>Starfruit Refresher</td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+
+              <div class="sec-block">
+                <div class="sec-title gold">Lemonades (Sparkling)</div>
+                <div class="sec-body flush">
+                  <table class="craft-table compact">
+                    <tbody>
+                      <tr><td><strong>PPL</strong></td><td>Prickly Pear Lemonade</td></tr>
+                      <tr><td><strong>PP</strong></td><td>Prickly Palmer</td></tr>
+                      <tr><td><strong>Star ⭐</strong></td><td>Sparkling</td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+
+              <div class="sec-block">
+                <div class="sec-title gold">Energy</div>
+                <div class="sec-body flush">
+                  <table class="craft-table compact">
+                    <tbody>
+                      <tr><td><strong>HVE</strong></td><td>Hawaiian Vacation</td></tr>
+                      <tr><td><strong>POG</strong></td><td>P.O.G.</td></tr>
+                      <tr><td><strong>DSE</strong></td><td>Desert Sunset</td></tr>
+                      <tr><td><strong>OSE</strong></td><td>Orange-Sickle (Cream?)</td></tr>
+                      <tr><td><strong>BNE</strong></td><td>Berry Night</td></tr>
+                      <tr><td><strong>SPE</strong></td><td>Sour Patch</td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+
+              <div class="sec-block">
+                <div class="sec-title gold">Tea (Sweetened)</div>
+                <div class="sec-body flush">
+                  <table class="craft-table compact">
+                    <tbody>
+                      <tr><td><strong>BT</strong></td><td>Black Tea</td></tr>
+                      <tr><td><strong>PGT</strong></td><td>Pomegranate Green Tea</td></tr>
+                      <tr><td><strong>LMHT</strong></td><td>Lemon Mango Herbal Tea</td></tr>
+                      <tr><td><strong>Ch</strong></td><td>Chai Tea</td></tr>
+                      <tr><td><strong>ML</strong></td><td>Matcha Tea Latte</td></tr>
+                      <tr><td><strong>HT</strong></td><td>Hot Tea</td></tr>
+                      <tr><td><strong>TL</strong></td><td>Tea Latte</td></tr>
+                      <tr><td><strong>LF</strong></td><td>London Fog Tea Latte</td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+
+              <div class="sec-block">
+                <div class="sec-title gold">Twister + Smoothies (WC)</div>
+                <div class="sec-body flush">
+                  <table class="craft-table compact">
+                    <tbody>
+                      <tr><td><strong>Flav-T</strong></td><td>Flavor Twister</td></tr>
+                      <tr><td><strong>CT</strong></td><td>Caramel Twister</td></tr>
+                      <tr><td><strong>MT</strong></td><td>Mocha Twister</td></tr>
+                      <tr><td><strong>OT</strong></td><td>Oreo Twister</td></tr>
+                      <tr><td><strong>BS</strong></td><td>Blooming Berry Smoothie</td></tr>
+                      <tr><td><strong>TS</strong></td><td>Tropical Harmony Smoothie</td></tr>
+                      <tr><td><strong>AS</strong></td><td>Aloha Pineapple Smoothie</td></tr>
+                      <tr><td><strong>HS</strong></td><td>Harvest Greens Smoothie</td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="page-foot">
+          <span>BRICK ROAD COFFEE • DRINK ACRONYMS &amp; CUP MARKING GUIDE</span>
+          <span>( ) = A QUESTION TO ASK THE CUSTOMER</span>
+        </div>
+      </section>
+    </div>
+
+
+
+
+
+
+ /* ==========================================================================
+     COMPLETE 2025 NEW RECIPE CARDS DATASET (ALL 76 CARDS FROM DOCX)
+     ========================================================================== */
+  const RECIPES_2025 = [
+    // HOT CLASSICS (11)
+    { cat:"HOT CLASSICS", title:"Brewed Coffee*", sizes:["16 oz","20 oz"], rows:[
+      ["1 – Steam Milk","Skip this step","—","—","—"],
+      ["2 – Pull Espresso Shots","Skip this step","—","—","—"],
+      ["3 – Add Syrup","Monin Syrup (if requested)","4 Pumps","5 Pumps","Full Pumps"],
+      ["4 – Finish & Engage","Fill with brewed Coffee","Fill","Fill","¼ inch below rim"]
+    ], notes:"Ask if any cream/milk or room for cream is needed. (Add up to 2 oz cold milk for no charge)" },
+
+    { cat:"HOT CLASSICS", title:"Brewed Coffee w/ Shot*", sizes:["16 oz","20 oz"], rows:[
+      ["1 – Steam Milk","Skip this step","—","—","—"],
+      ["2 – Pull Espresso Shots","Queue requested number of shots","“Red Eye” = 1 Shot","“Black Eye” = 2 Shots","Pull into cup"],
+      ["3 – Add Syrup","Monin Syrup (if requested)","4 Pumps","5 Pumps","Full Pumps"],
+      ["4 – Finish & Engage","Fill with brewed Coffee","Fill","Fill","¼ inch below rim"]
+    ], notes:"Ask if any cream/milk or room for cream is needed. (Add up to 2 oz cold milk for no charge)" },
+
+    { cat:"HOT CLASSICS", title:"Café Au Lait*", sizes:["16 oz","20 oz"], rows:[
+      ["1 – Steam Milk","2% milk is the default","12 oz milk","14 oz milk","Aerate milk 3-5 seconds. Steam to 150℉ - 155℉"],
+      ["2 – Pull Espresso Shots","Skip this step","—","—","—"],
+      ["3 – Add Syrup","Monin Syrup (if requested)","4 Pumps","5 Pumps","Full Pumps"],
+      ["4 – Finish & Engage","Fill cup half full with brewed coffee. Fill with steamed milk. Top with ¼ inch of foam.","50/50","50/50","¼ inch below rim"]
+    ], notes:"None" },
+
+    { cat:"HOT CLASSICS", title:"Espresso*", sizes:["Solo","Doppio"], rows:[
+      ["1 – Steam Milk","Skip this step","—","—","—"],
+      ["2 – Pull Espresso Shots","Espresso","1 shot","2 shots","Pull shots directly into cup."],
+      ["3 – Add Syrup","Skip this step","—","—","—"],
+      ["4 – Finish & Engage","Immediately serve shot(s) in a 16 fl oz cup with a lid.","Serve","Serve","—"]
+    ], notes:"None" },
+
+    { cat:"HOT CLASSICS", title:"Con Panna", sizes:["Solo","Doppio"], rows:[
+      ["1 – Steam Milk","Skip this step","—","—","—"],
+      ["2 – Pull Espresso Shots","Espresso","1 shot","2 shots","Pull shots directly into cup."],
+      ["3 – Add Syrup","Skip this step","—","—","—"],
+      ["4 – Finish & Engage","Top with a single layer of whipped cream (Do not fill the cup). Immediately serve shot(s) in a 16 fl oz cup with a lid.","1 layer WC","1 layer WC","—"]
+    ], notes:"None" },
+
+    { cat:"HOT CLASSICS", title:"Americano", sizes:["16 oz","20 oz"], rows:[
+      ["1 – Steam Milk","Skip this step","—","—","—"],
+      ["2 – Pull Espresso Shots","Espresso","2 shots","4 shots","Pull shots directly into cup."],
+      ["3 – Add Syrup","Monin Syrup (if requested)","4 Pumps","5 Pumps","Full Pumps"],
+      ["4 – Finish & Engage","Fill with hot water from the coffee brewer.","Fill","Fill","¼ inch below rim"]
+    ], notes:"Ask if any cream/milk or room for cream is needed. (Add up to 2 oz cold milk for no charge)" },
+
+    { cat:"HOT CLASSICS", title:"Cappuccino", sizes:["16 oz","20 oz"], rows:[
+      ["1 – Steam Milk","Whole milk is the default","Below spout","Below spout","Measure to just below start of pour spout in appropriate pitcher. Aerate milk for 6-8 seconds."],
+      ["2 – Pull Espresso Shots","Espresso","2 shots","2 shots","Pull shots directly into cup."],
+      ["3 – Add Syrup","Monin Syrup (if requested)","4 Pumps","5 Pumps","Full Pumps"],
+      ["4 – Finish & Engage","Free-pour foamy milk into cup to rim (50/50 blend of steamed & foamed milk). Dry = more foam; Wet = more steamed milk.","50/50","50/50","¼ inch below rim"]
+    ], notes:"None" },
+
+    { cat:"HOT CLASSICS", title:"Latte / Flavored Latte", sizes:["16 oz","20 oz"], rows:[
+      ["1 – Steam Milk","2% milk is the default","12 oz milk","14 oz milk","Aerate milk 3-5 seconds. Steam to 150℉ - 155℉"],
+      ["2 – Pull Espresso Shots","Espresso","2 shots","2 shots","Pull shots directly into cup."],
+      ["3 – Add Syrup","Monin Syrup (if requested)","4 Pumps","5 Pumps","Full Pumps"],
+      ["4 – Finish & Engage","Fill with steamed milk. Top with 1/4 inch of foam.","Fill","Fill","¼ inch below rim"]
+    ], notes:"None" },
+
+    { cat:"HOT CLASSICS", title:"Café Breve", sizes:["16 oz","20 oz"], rows:[
+      ["1 – Steam Milk","½ & ½ (Breve) milk is the default","12 oz milk","14 oz milk","Aerate milk 3-5 seconds. Steam to 150℉ - 155℉"],
+      ["2 – Pull Espresso Shots","Espresso","2 shots","2 shots","Pull shots directly into cup."],
+      ["3 – Add Syrup","Monin Syrup (if requested)","4 Pumps","5 Pumps","Full Pumps"],
+      ["4 – Finish & Engage","Fill with steamed milk. Top with 1/4 inch of foam.","Fill","Fill","¼ inch below rim"]
+    ], notes:"None" },
+
+    { cat:"HOT CLASSICS", title:"Mocha / White Mocha", sizes:["16 oz","20 oz"], rows:[
+      ["1 – Steam Milk","2% milk is the default","12 oz milk","14 oz milk","Aerate milk 3-5 seconds. Steam to 150℉ - 155℉"],
+      ["2 – Pull Espresso Shots","Espresso","2 shots","2 shots","Pull shots directly into the cup."],
+      ["3 – Add Syrup","Monin Dark Chocolate Or Monin White Mocha Sauce","2 Pumps","2 ½ Pumps","Full Pumps"],
+      ["4 – Finish & Engage","Stir espresso and Mocha sauce. Fill with steamed milk. Top with whipped cream.","WC","WC","¼ inch below rim"]
+    ], notes:"None" },
+
+    { cat:"HOT CLASSICS", title:"Caramel Macchiato", sizes:["16 oz","20 oz"], rows:[
+      ["1 – Steam Milk","2% milk is the default","12 oz milk","14 oz milk","Aerate milk 3-5 seconds. Steam to 150℉ - 155℉"],
+      ["2 – Pull Espresso Shots","Espresso","2 shots","2 shots","Pull shots into shot tins to pour on top."],
+      ["3 – Add Syrup","Monin Vanilla Syrup","4 Pumps","5 Pumps","Full Pumps directly into cup."],
+      ["4 – Finish & Engage","Fill cup ¾ full with steamed milk. Top with foam to ½ inch below rim. Pour shots through foam “marking” the milk. Top with Caramel sauce crosshatch & double-circle design.","Crosshatch","Crosshatch","¼ inch below rim"]
+    ], notes:"None" },
+
+    // ICED CLASSICS (7)
+    { cat:"ICED CLASSICS", title:"Iced Espresso", sizes:["Solo","Doppio"], rows:[
+      ["1 – Pull Espresso Shots","Espresso","1 shot","2 shots","Pull shots into shot tins."],
+      ["2 – Add Syrup","Skip this step","—","—","—"],
+      ["3 – Add Milk","Skip this step","—","—","—"],
+      ["4 – Finish & Engage","Pour shots into a 16 oz cold cup and fill with ice. Immediately serve shot(s) with a lid.","16oz Cup","16oz Cup","—"]
+    ], notes:"None" },
+
+    { cat:"ICED CLASSICS", title:"Iced Americano", sizes:["16 oz","24 oz"], rows:[
+      ["1 – Pull Espresso Shots","Espresso","2 shots","4 shots","Pull shots into shot tins."],
+      ["2 – Add Syrup","Monin Syrup (if requested)","4 Pumps","6 Pumps","Full Pumps"],
+      ["3 – Add Water","Filtered Cold Water","Fill cup ¾ full","Fill cup ¾ full","—"],
+      ["4 – Add Ice","Ice Scoop","Fill to top","Fill to top","Add directly to cup"],
+      ["5 – Finish & Engage","Pour espresso mixture over ice.","—","—","¼ inch below rim"]
+    ], notes:"Ask if any cream/milk or room for cream is needed. (Add up to 2 oz cold milk for no charge)" },
+
+    { cat:"ICED CLASSICS", title:"Iced Latte / Iced Flavored Latte", sizes:["16 oz","24 oz"], rows:[
+      ["1 – Pull Espresso Shots","Espresso","2 shots","3 shots","Pull shots into shot tins."],
+      ["2 – Add Syrup","Monin Syrup (if requested)","4 Pumps","6 Pumps","Full Pumps"],
+      ["3 – Add Milk","2% milk is the default","Fill cup ¾ full","Fill cup ¾ full","—"],
+      ["4 – Add Ice","Ice Scoop","Fill to top","Fill to top","Add directly to cup"],
+      ["5 – Finish & Engage","Pour espresso over ice & lid.","—","—","¼ inch below rim"]
+    ], notes:"None" },
+
+    { cat:"ICED CLASSICS", title:"Iced Café Breve", sizes:["16 oz","24 oz"], rows:[
+      ["1 – Pull Espresso Shots","Espresso","2 shots","3 shots","Pull shots into shot tins."],
+      ["2 – Add Syrup","Monin Syrup (if requested)","4 Pumps","6 Pumps","Full Pumps"],
+      ["3 – Add Milk","½ & ½ (Breve) is the default","Fill cup ¾ full","Fill cup ¾ full","—"],
+      ["4 – Add Ice","Ice scoop","Fill to top","Fill to top","Add directly to cup"],
+      ["5 – Finish & Engage","Pour espresso over ice & lid.","—","—","¼ inch below rim"]
+    ], notes:"None" },
+
+    { cat:"ICED CLASSICS", title:"Iced Mocha / White Mocha", sizes:["16 oz","24 oz"], rows:[
+      ["1 – Pull Espresso Shots","Espresso","2 shots","3 shots","Pull into shot tins."],
+      ["2 – Add Syrup","Monin Dark Chocolate Or White Mocha Sauce","2 Pumps","3 Pumps","Full Pumps into measuring cup. Stir Sauce & Espresso mixture before adding milk!"],
+      ["3 – Add Milk","2% milk is the default","Fill cup ¾ full","Fill cup ¾ full","—"],
+      ["4 – Add Ice","Ice Scoop","Fill to top","Fill to top","Add directly to cup"],
+      ["5 – Finish & Engage","Pour espresso mixture over ice. Top with whipped cream and dome lid.","WC + Dome","WC + Dome","—"]
+    ], notes:"Stir Sauce & Espresso mixture before adding milk to the measuring cup." },
+
+    { cat:"ICED CLASSICS", title:"Iced Caramel Macchiato", sizes:["16 oz","24 oz"], rows:[
+      ["1 – Pull Espresso Shots","Espresso","2 shots","3 shots","Pull shots into shot tins. Complete remaining steps in separate 8oz or 16oz measuring cup."],
+      ["2 – Add Syrup","Monin Vanilla Syrup","4 Pumps","6 Pumps","Full Pumps"],
+      ["3 – Add Milk","2% milk is the default","Fill cup ¾ full","Fill cup ¾ full","—"],
+      ["4 – Add Ice","Ice Scoop","Fill to top","Fill to top","Add directly to cup"],
+      ["5 – Finish & Engage","Drizzle cup with caramel. Fill cup with ice, milk and vanilla. Top with espresso (“marking” the milk) then drizzle caramel crosshatch & double-circle design on top.","Layered","Layered","¼ inch below rim"]
+    ], notes:"Layered drink" },
+
+    { cat:"ICED CLASSICS", title:"Iced Cinnamon Roll Latte", sizes:["16 oz","24 oz"], rows:[
+      ["1 – Pull Espresso Shots","Espresso","2 shots","3 shots","Pull shots into shot tins."],
+      ["2a – Add Sauce","Monin White Mocha Sauce","1 pump","1.5 pumps","Stir Sauce & Espresso mixture before adding milk to the cup."],
+      ["2b – Add Syrup","Monin Vanilla Syrup","1 pump","1.5 pumps","—"],
+      ["2c – Add Syrup","Monin Cinnamon Syrup","1 Pump","1.5 Pumps","—"],
+      ["3 – Add Milk","2% milk is the default","Fill cup ¾ full","Fill cup ¾ full","—"],
+      ["4 – Add Ice","Ice Scoop","Fill to top","Fill to top","Add directly to cup"],
+      ["5 – Finish & Engage","Top with whipped cream and a sprinkle of cinnamon.","WC + Cinn","WC + Cinn","—"]
+    ], notes:"None" },
+
+    // HOT STEAMERS/COCOA (2)
+    { cat:"HOT STEAMERS/COCOA", title:"Hot Chocolate", sizes:["16 oz","20 oz"], rows:[
+      ["1 – Steam Milk","2% milk is the default","12 oz milk","14 oz milk","Aerate milk 3-5 seconds. Steam to 150℉ - 155℉"],
+      ["2 – Pull Espresso Shots","Skip this step","—","—","—"],
+      ["3a – Add Sauce","Monin Dark Chocolate Sauce","2 pumps","3 pumps","Full Pumps"],
+      ["3b – Add Syrup","Monin Vanilla Syrup","1 pump","2 pumps","Full Pumps"],
+      ["4 – Finish & Engage","Add half of the steamed milk and stir syrup and chocolate sauce. Fill with steamed milk. Top with whipped cream. Drizzle with Chocolate.","WC + Choc","WC + Choc","¼ inch below rim"]
+    ], notes:"None" },
+
+    { cat:"HOT STEAMERS/COCOA", title:"Steamed Milk – Flavored Steamer", sizes:["16 oz","20 oz"], rows:[
+      ["1 – Steam Milk","2% milk is the default","Below spout","Below spout","Measure to just below start of pour spout in appropriate pitcher. Aerate milk 3-5 seconds."],
+      ["2 – Pull Espresso Shots","Skip this step","—","—","—"],
+      ["3 – Add Syrup","Monin Vanilla (or any flavor) Syrup","4 pumps","5 pumps","Full Pumps"],
+      ["4 – Finish & Engage","Fill with steamed milk. Top with whipped cream.","WC","WC","¼ inch below rim"]
+    ], notes:"None" },
+
+    // HOT FAVORITES (8)
+    { cat:"HOT FAVORITES", title:"Honey Vanilla Latte", sizes:["16 oz","20 oz"], rows:[
+      ["1 – Steam Milk","2% milk is the default","12 oz milk","14 oz milk","Aerate milk 3-5 seconds. Steam to 150℉ - 155℉"],
+      ["2 – Pull Espresso Shots","Espresso","2 shots","2 shots","Pull shots directly into the cup."],
+      ["3a – Add Syrup","Monin Honey Syrup","2 pumps","2.5 pumps","Full Pumps"],
+      ["3b – Add Syrup","Monin Vanilla Syrup","2 pumps","2.5 pumps","Full Pumps"],
+      ["4 – Finish & Engage","Swirl espresso and syrup. Fill with steamed milk. Top with 1/4 inch of foam.","Swirl","Swirl","¼ inch below rim"]
+    ], notes:"None" },
+
+    { cat:"HOT FAVORITES", title:"Honey Lavender Latte", sizes:["16 oz","20 oz"], rows:[
+      ["1 – Steam Milk","2% milk is the default","12 oz milk","14 oz milk","Aerate milk 3-5 seconds. Steam to 150℉ - 155℉"],
+      ["2 – Pull Espresso Shots","Espresso","2 shots","2 shots","Pull shots directly into the cup."],
+      ["3a – Add Syrup","Monin Honey Syrup","1.3 pumps","1.6 pumps","—"],
+      ["3b – Add Syrup","Monin Vanilla Syrup","1.3 pumps","1.6 pumps","—"],
+      ["3c – Add Syrup","Monin Lavender Syrup","1.3 pumps","1.6 pumps","—"],
+      ["4 – Finish & Engage","Swirl espresso and syrup. Fill with steamed milk. Top with 1/4 inch of foam.","Swirl","Swirl","¼ inch below rim"]
+    ], notes:"Code: HLL" },
+
+    { cat:"HOT FAVORITES", title:"Blackberry (Lavender) Latte", sizes:["16 oz","20 oz"], rows:[
+      ["1 – Steam Milk","2% milk is the default","12 oz milk","14 oz milk","Aerate milk 3-5 seconds. Steam to 150℉ - 155℉"],
+      ["2 – Pull Espresso Shots","Espresso","2 shots","2 shots","Pull shots directly into the cup."],
+      ["3a – Add Syrup","Monin Honey Syrup","1 pump","1.25 pumps","—"],
+      ["3b – Add Syrup","Monin Vanilla Syrup","1 pump","1.25 pumps","—"],
+      ["3c – Add Syrup","Monin Blackberry Syrup","1 pump","1.25 pumps","—"],
+      ["3d – Add Syrup","Monin Lavender Syrup","1 pump","1.25 pumps","—"],
+      ["4 – Finish & Engage","Swirl espresso and syrup. Fill with steamed milk. Top with 1/4 inch of foam.","Swirl","Swirl","¼ inch below rim"]
+    ], notes:"Code: BBL — ( ) = Ask customer if they want Lavender!" },
+
+    { cat:"HOT FAVORITES", title:"French Revolution Latte (Hot)", sizes:["16 oz","20 oz"], rows:[
+      ["1 – Steam Milk","2% is the default","12 oz milk","14 oz milk","Aerate milk 3-5 seconds. Steam to 150℉ - 155℉"],
+      ["2 – Pull Espresso Shots","Espresso","2 shots","2 shots","Pull shots directly into the cup."],
+      ["3a – Add Syrup","Monin Hazelnut Syrup","2 pumps","2.5 pumps","—"],
+      ["3b – Add Syrup","Monin Vanilla Syrup","2 pumps","2.5 pumps","—"],
+      ["4 – Finish & Engage","Swirl espresso and syrup. Fill with steamed milk. Top with 1/4 inch of foam. (NO COLD FOAM ON HOT DRINKS)","No CF","No CF","¼ inch below rim"]
+    ], notes:"NO COLD FOAM ON HOT DRINKS" },
+
+    { cat:"HOT FAVORITES", title:"Cinnamon Roll Latte", sizes:["16 oz","20 oz"], rows:[
+      ["1 – Steam Milk","2% milk is the default","12 oz milk","14 oz milk","Aerate milk 3-5 seconds. Steam to 150℉ - 155℉"],
+      ["2 – Pull Espresso Shots","Espresso","2 shots","2 shots","Pull shots directly into the cup."],
+      ["3a – Add Sauce","Monin White Mocha Sauce","1 pump","1 pump","Full Pump"],
+      ["3b – Add Syrup","Monin Vanilla Syrup","1 pump","1.5 pumps","Full Pumps"],
+      ["3c – Add Syrup","Monin Cinnamon Syrup","1 Pump","1.5 Pumps","Full Pumps"],
+      ["4 – Finish & Engage","Stir espresso, syrup and white mocha sauce. Fill with steamed milk. Top with whipped cream and a sprinkle of Cinnamon.","WC + Cinn","WC + Cinn","¼ inch below rim"]
+    ], notes:"Code: CRL" },
+
+    { cat:"HOT FAVORITES", title:"Caramel Mocha", sizes:["16 oz","20 oz"], rows:[
+      ["1 – Steam Milk","2% milk is the default","12 oz milk","14 oz milk","Aerate milk 3-5 seconds. Steam to 150℉ - 155℉"],
+      ["2 – Pull Espresso Shots","Espresso","2 shots","2 shots","Pull shots directly into the cup."],
+      ["3a – Add Sauce","Monin Dark Chocolate Sauce","1 pump","1.25 pumps","Full Pumps"],
+      ["3b – Add Sauce","Monin Caramel Sauce","1 pump","1.25 pumps","Full Pumps"],
+      ["4 – Finish & Engage","Stir espresso, syrup and mocha sauce. Fill with steamed milk. Top with whipped cream.","WC","WC","¼ inch below rim"]
+    ], notes:"None" },
+
+    { cat:"HOT FAVORITES", title:"Hope Dealer Mocha", sizes:["16 oz","20 oz"], rows:[
+      ["1 – Steam Milk","2% milk is the default","12 oz milk","14 oz milk","Aerate milk 3-5 seconds. Steam to 150℉ - 155℉"],
+      ["2 – Pull Espresso Shots","Espresso","2 shots","2 shots","Pull shots directly into the cup."],
+      ["3a – Add Sauce","Monin Dark Chocolate Sauce","1 pump","1 pump","Full Pump"],
+      ["3b – Add Syrup","Monin Coconut Syrup","1 pump","1.5 pumps","Full Pumps"],
+      ["3c – Add Syrup","Monin Almond Syrup","1 Pump","1.5 Pumps","Full Pumps"],
+      ["4 – Finish & Engage","Stir espresso, syrup and dark chocolate sauce. Fill with steamed milk. Top with whipped cream.","WC","WC","¼ inch below rim"]
+    ], notes:"None" },
+
+    { cat:"HOT FAVORITES", title:"Flying Monkey", sizes:["16 oz","20 oz"], rows:[
+      ["1 – Steam Milk","Breve (½ & ½) milk is the default","12 oz milk","14 oz milk","Aerate milk 3-5 seconds. Steam to 150℉ - 155℉"],
+      ["2 – Pull Espresso Shots","Espresso","4 shots","6 shots","Pull shots directly into the cup."],
+      ["3 – Add Syrup","Monin Irish Cream Syrup","4 pumps","5 pumps","Full Pumps"],
+      ["4 – Finish & Engage","Swirl espresso and syrup. Fill with steamed milk. Top with 1/4 inch of foam.","Swirl","Swirl","¼ inch below rim"]
+    ], notes:"Code: FM (4 shots in 16oz / 6 shots in 20oz)" },
+
+    // ICED FAVORITES (8)
+    { cat:"ICED FAVORITES", title:"Iced Honey Vanilla Latte", sizes:["16 oz","24 oz"], rows:[
+      ["1 – Pull Espresso Shots","Espresso","2 shots","3 shots","—"],
+      ["2a – Add Syrup","Monin Honey Syrup","2 pumps","3 pumps","Full Pumps"],
+      ["2b – Add Syrup","Monin Vanilla Syrup","2 pumps","3 pumps","Full Pumps"],
+      ["3 – Add Milk","2% milk is the default","Fill cup ¾ full","Fill cup ¾ full","—"],
+      ["4 – Add Ice","Ice Scoop","Fill to top","Fill to top","Add directly to cup"],
+      ["5 – Finish & Engage","Pour espresso over ice & lid.","—","—","¼ inch below rim"]
+    ], notes:"None" },
+
+    { cat:"ICED FAVORITES", title:"Iced Honey Lavender Latte", sizes:["16 oz","24 oz"], rows:[
+      ["1 – Pull Espresso Shots","Espresso","2 shots","3 shots","—"],
+      ["2a – Add Syrup","Monin Honey Syrup","1.3 pumps","2 pumps","—"],
+      ["2b – Add Syrup","Monin Vanilla Syrup","1.3 pumps","2 pumps","—"],
+      ["2c – Add Syrup","Monin Lavender Syrup","1.3 pumps","2 pumps","—"],
+      ["3 – Add Milk","2% milk is the default","Fill cup ¾ full","Fill cup ¾ full","—"],
+      ["4 – Add Ice","Ice Scoop","Fill to top","Fill to top","Add directly to cup"]
+    ], notes:"Code: HLL" },
+
+    { cat:"ICED FAVORITES", title:"Iced Blackberry (Lavender) Latte", sizes:["16 oz","24 oz"], rows:[
+      ["1 – Pull Espresso Shots","Espresso","2 shots","3 shots","—"],
+      ["2a – Add Syrup","Monin Honey Syrup","1 pump","1.5 pumps","—"],
+      ["2b – Add Syrup","Monin Lavender Syrup","1 pump","1.5 pumps","—"],
+      ["2c – Add Syrup","Monin Blackberry Syrup","1 pump","1.5 pumps","—"],
+      ["2d – Add Syrup","Monin Vanilla Syrup","1 pump","1.5 pumps","—"],
+      ["3 – Add Milk","2% milk is the default","Fill cup ¾ full","Fill cup ¾ full","—"],
+      ["4 – Add Ice","Ice Scoop","Fill to top","Fill to top","Add directly to cup"]
+    ], notes:"Code: BBL" },
+
+    { cat:"ICED FAVORITES", title:"Iced French Revolution Latte", sizes:["16 oz","24 oz"], rows:[
+      ["1 – Pull Espresso Shots","Espresso","2 shots","3 shots","—"],
+      ["2a – Add Syrup","Monin Hazelnut Syrup","2 pumps","3 pumps","—"],
+      ["2b – Add Syrup","Monin Vanilla Syrup","2 pumps","3 pumps","—"],
+      ["3 – Add Milk","2% milk is the default","Fill cup about ½ full","Fill cup about ½ full","—"],
+      ["4 – Add Ice","Ice Scoop","1 inch room","1 inch room","Fill till one inch below rim"],
+      ["5 – Finish & Engage","Top with Hazelnut Cold Foam","HZ Cold Foam","HZ Cold Foam","—"]
+    ], notes:"Can be requested as a hot latte (without the cold foam)" },
+
+    { cat:"ICED FAVORITES", title:"Iced Caramel Mocha", sizes:["16 oz","24 oz"], rows:[
+      ["1 – Pull Espresso Shots","Espresso","2 shots","3 shots","Pull shots into shot tin"],
+      ["2a – Add Sauce","Monin Dark Chocolate Sauce","1 Pump","1.5 Pumps","Stir Sauce & Espresso mixture before adding milk to the cup."],
+      ["2b – Add Sauce","Monin Caramel Sauce","1 Pump","1.5 Pumps","—"],
+      ["3 – Add Milk","2% milk is the default","Fill cup ¾ full","Fill cup ¾ full","—"],
+      ["4 – Add Ice","Ice Scoop","Fill to top","Fill to top","Add directly to cup"],
+      ["5 – Finish & Engage","Pour espresso mixture over ice. Top with whipped cream, Caramel & Mocha Drizzle, and a dome lid.","WC + Drizzle","WC + Drizzle","—"]
+    ], notes:"None" },
+
+    { cat:"ICED FAVORITES", title:"Iced Hope Dealer Mocha", sizes:["16 oz","24 oz"], rows:[
+      ["1 – Pull Espresso Shots","Espresso","2 shots","3 shots","—"],
+      ["2a – Add Sauce","Monin Dark Chocolate Sauce","1 Pump","1.5 Pumps","Stir Sauce & Espresso mixture before adding milk to the measuring cup."],
+      ["2b – Add Syrup","Monin Coconut Syrup","1 Pump","1.5 Pumps","—"],
+      ["2c – Add Syrup","Monin Almond Syrup","1 Pump","1.5 Pumps","—"],
+      ["3 – Add Milk","2% milk is the default","Fill cup ¾ full","Fill cup ¾ full","—"],
+      ["4 – Add Ice","Ice Scoop","Fill to top","Fill to top","Add directly to cup"],
+      ["5 – Finish & Engage","Pour espresso mixture over ice. Top with whipped cream, and a dome lid.","WC + Dome","WC + Dome","—"]
+    ], notes:"None" },
+
+    { cat:"ICED FAVORITES", title:"Iced Flying Monkey", sizes:["16 oz","24 oz"], rows:[
+      ["1 – Pull Espresso Shots","Espresso","4 shots","6 shots","—"],
+      ["2 – Add Syrup","Monin Irish Cream Syrup","4 pumps","6 pumps","Full Pumps"],
+      ["3 – Add Milk","Breve (½ & ½) milk is the default","Fill cup ¾ full","Fill cup ¾ full","—"],
+      ["4 – Add Ice","Ice Scoop","Fill to top","Fill to top","Add directly to cup"],
+      ["5 – Finish & Engage","Pour espresso mixture over ice.","—","—","¼ inch below rim"]
+    ], notes:"Code: FM" },
+
+    { cat:"ICED FAVORITES", title:"Iced Spiced Brown Sugar Shaken Espresso", sizes:["16 oz","24 oz"], rows:[
+      ["1 – Add Ice","Volumetric Scoop","¾ shaker full","Whole shaker","Add to Shaker"],
+      ["2a – Add Syrup","Monin Spiced Brown Sugar Syrup","2 pumps","3 pumps","Full Pumps"],
+      ["2b – Add Syrup","Monin Cinnamon Syrup","2 Pumps","3 Pumps","Full Pumps"],
+      ["3 – Pull Espresso Shots","Espresso","2 shots","4 shots","Pull shots into shot tins."],
+      ["4 – Finish & Engage","Put lid on shaker. Shake. Pour contents into cup. Top with oat milk and cinnamon powder.","Oat + Cinn","Oat + Cinn","¼ inch below rim"]
+    ], notes:"ONLY MADE ICED. (If customer wants hot, recommend a Spiced Brown Sugar Latte.)" },
+
+    // SEASONALS (5)
+    { cat:"SEASONALS", title:"Peppermint Mocha / White Mocha (Hot)", sizes:["16 oz","20 oz"], rows:[
+      ["1 – Steam Milk","2% milk is the default","12 oz milk","14 oz milk","Measure to just below start of pour spout. Aerate milk 3-5 seconds."],
+      ["2 – Pull Espresso Shots","Espresso","2 shots","2 shots","Pull shots directly into the cup."],
+      ["3a – Add Sauce","Monin Dark Chocolate Or White Mocha Sauce","1 Pump","1 ½ Pumps","Full Pumps"],
+      ["3b – Add Syrup","Monin Peppermint Syrup","2 Pumps","3 Pumps","Full Pumps"],
+      ["4 – Finish & Engage","Stir espresso, Peppermint syrup and Mocha sauce. Fill with steamed milk. Top with whipped cream.","WC","WC","¼ inch below rim"]
+    ], notes:"None" },
+
+    { cat:"SEASONALS", title:"Pumpkin Pie Latte (Hot)", sizes:["16 oz","20 oz"], rows:[
+      ["1 – Steam Milk","2% milk is the default","12 oz milk","14 oz milk","Aerate milk 3-5 seconds. Steam to 150℉ - 155℉"],
+      ["2 – Pull Espresso Shots","Espresso","2 shots","2 shots","Pull shots directly into the cup."],
+      ["3a – Add Sauce","White Chocolate Sauce","1 pump","1.5 pumps","—"],
+      ["3b – Add Sauce","Pumpkin Sauce","1 pump","1.5 pumps","—"],
+      ["3c – Add Syrup","Toasted Marshmallow","½ pump","1 pump","—"],
+      ["4 – Finish & Engage","Swirl espresso and syrup. Fill with steamed milk. Top with whipped cream and cinnamon.","WC + Cinn","WC + Cinn","¼ inch below rim"]
+    ], notes:"None" },
+
+    { cat:"SEASONALS", title:"Foggy Night Tea Latte", sizes:["16 oz","20 oz"], rows:[
+      ["1 – Steam Milk","Oat milk is the default","½ latte amt","½ latte amt","Measure approx. ½ of amount steamed for same size latte. Aerate 3-5s."],
+      ["2 – Add Tea Bag(s)","Rishi English Breakfast Tea","1 bag","2 bags","—"],
+      ["3a – Add Syrup","Monin Cinnamon Syrup","2 Pumps","2.5 Pumps","—"],
+      ["3b – Add Syrup","Monin Spiced Brown Sugar","2 pumps","2.5 Pumps","—"],
+      ["4 – Finish & Engage","Fill cup half full with hot water from coffee brewer. Fill rest with steamed oat milk. Top with ¼ inch foam & cinnamon powder.","Cinn Powder","Cinn Powder","¼ inch below rim"]
+    ], notes:"(IF requested iced) Steep tea in 4-6 oz hot water for 4 mins then pour over ice, top with oat milk and cinnamon powder." },
+
+    { cat:"SEASONALS", title:"Iced Peppermint Mocha / White Mocha", sizes:["16 oz","24 oz"], rows:[
+      ["1 – Pull Espresso Shots","Espresso","2 shots","3 shots","Pull shots in shot tin"],
+      ["2a – Add Sauce","Monin Dark Chocolate Or White Mocha Sauce","1 Pump","1.5 Pumps","Stir Sauce & Espresso mixture before adding milk to the cup."],
+      ["2b – Add Syrup","Monin Peppermint Syrup","2 Pumps","3 Pumps","—"],
+      ["3 – Add Milk","2% milk is the default","Fill cup ¾ full","Fill cup ¾ full","—"],
+      ["4 – Add Ice","Ice Scoop","Fill to top","Fill to top","Add directly to cup"],
+      ["5 – Finish & Engage","Top with whipped cream and dome lid.","WC + Dome","WC + Dome","—"]
+    ], notes:"None" },
+
+    { cat:"SEASONALS", title:"Iced Pumpkin Pie Latte", sizes:["16 oz","24 oz"], rows:[
+      ["1 – Pull Espresso Shots","Espresso","2 shots","3 shots","Pull shots in shot tin"],
+      ["2a – Add Sauce","White Chocolate Sauce","1 pump","1.5 pumps","—"],
+      ["2b – Add Sauce","Pumpkin Sauce","1 pump","1.5 pumps","—"],
+      ["2c – Add Syrup","Toasted Marshmallow","½ pump","1 pump","—"],
+      ["3 – Add Milk","2% milk is the default","Fill cup ¾ full","Fill cup ¾ full","—"],
+      ["4 – Add Ice","Ice Scoop","Fill to top","Fill to top","Add directly to cup"],
+      ["5 – Finish & Engage","Top with whipped cream, cinnamon, and dome lid.","WC + Cinn","WC + Cinn","¼ inch below rim"]
+    ], notes:"None" },
+
+    // TEAS & MATCHA (8)
+    { cat:"TEAS & MATCHA", title:"Hot Brewed Tea", sizes:["16 oz","20 oz"], rows:[
+      ["1 – Steam Milk","Skip this step","—","—","—"],
+      ["2 – Add Tea Bag(s)","Rishi Full Leaf Brewed Tea","1 bag","2 bags","—"],
+      ["3 – Add Syrup","Monin Syrup (If requested)","2 pumps","2.5 pumps","If requested"],
+      ["4 – Finish & Engage","Fill with hot water from the coffee brewer.","Fill","Fill","¼ inch below rim"]
+    ], notes:"None" },
+
+    { cat:"TEAS & MATCHA", title:"Hot Tea Latte", sizes:["16 oz","20 oz"], rows:[
+      ["1 – Steam Milk","2% milk is the default","½ latte amt","½ latte amt","Measure approx. ½ of amount steamed for same size latte. Aerate 3-5s."],
+      ["2 – Add Tea Bag(s)","Rishi Full Leaf Brewed Tea","1 bag","2 bags","—"],
+      ["3 – Add Syrup","Monin Pure Cane Sugar Syrup (If Requested)","4 Pumps","5 Pumps","If requested"],
+      ["4 – Finish & Engage","Fill cup half full with hot water from coffee brewer. Fill rest with steamed milk. Top with ¼ inch of foam.","50/50","50/50","¼ inch below rim"]
+    ], notes:"LONDON FOG = Vanilla, Earl Grey Tea Latte | FOGGY NIGHT = SBS, Cinn, English Breakfast Tea, Oat Milk Latte" },
+
+    { cat:"TEAS & MATCHA", title:"Hot Chai Latte", sizes:["16 oz","20 oz"], rows:[
+      ["1 – Steam Milk","2% milk is the default","Below spout","Below spout","Measure to just below start of pour spout. Aerate milk 3-5 seconds."],
+      ["2 – Pull Espresso Shots","Skip this step","—","—","—"],
+      ["3 – Add Chai","Maya Chai Concentrate","1 Pump","1.5 Pumps","Full Pumps"],
+      ["4 – Add Syrup","Flavor of choice (If requested)","2 pumps","2.5 pumps","—"],
+      ["5 – Finish & Engage","Fill cup 1/2 full with hot water. Fill rest with steamed milk. Top with ¼ inch of foam.","1/2 Hot Water","1/2 Hot Water","¼ inch below rim"]
+    ], notes:"None" },
+
+    { cat:"TEAS & MATCHA", title:"Hot Matcha Green Tea Latte", sizes:["16 oz","20 oz"], rows:[
+      ["1 – Steam Milk","2% milk is the default","12 oz milk","14 oz milk","Aerate milk 3-5 seconds. Steam to 150℉ - 155℉"],
+      ["2 – Mix Matcha","(1/2 tsp scoop) Sift into Matcha Bowl","1 scoop","2 scoops","Add half shot tin hot water (16oz) or full tin (20oz) & whisk in a “W” motion until frothy with bubbles (~15s). Pour into cup."],
+      ["3 – Add Syrup","If requested","2 Pumps","2.5 Pumps","Full Pumps into the cup"],
+      ["4 – Finish & Engage","Fill with steamed milk. Top with ¼ inch of foam.","Fill","Fill","¼ inch below rim"]
+    ], notes:"Ask if the customer wants sweetener. Our matcha powder is not sweetened." },
+
+    { cat:"TEAS & MATCHA", title:"Iced Tea", sizes:["16 oz","24 oz"], rows:[
+      ["1 – Pull Espresso Shots","Skip this step","—","—","—"],
+      ["2 – Add Syrup","Monin Syrup (if requested)","2 Pumps","3 Pumps","Full Pumps into cup"],
+      ["3 – Pour Tea","Iced Tea","Fill cup ¾ full","Fill cup ¾ full","—"],
+      ["4 – Add Ice","Ice Scoop","Fill to top","Fill to top","Add directly to cup"],
+      ["5 – Finish & Engage","Lid with strawless lid.","Strawless Lid","Strawless Lid","¼ inch below rim"]
+    ], notes:"None" },
+
+    { cat:"TEAS & MATCHA", title:"Iced Tea Latte", sizes:["16 oz","24 oz"], rows:[
+      ["1 – Steep Tea","Desired Tea Bag in measuring cup","3 oz hot water","4 oz hot water","Steep tea bag with hot water in measuring cup"],
+      ["2 – Add Syrup","Monin Syrup (if requested)","4 Pumps","6 Pumps","Full Pumps into cup"],
+      ["3 – Add Ice","Ice Scoop","Full ice cup","Full ice cup","Add directly to cup"],
+      ["4 – Mix Drink","Pour tea mixture into ice cup, pour back into measuring cup and repeat 3 times (or until cold), finishing in plastic cup.","3x Pour Chill","3x Pour Chill","—"],
+      ["5 – Add Milk","2% milk is the default","Top off","Top off","¼ inch below rim"]
+    ], notes:"LONDON FOG = Vanilla, Earl Grey Tea Latte" },
+
+    { cat:"TEAS & MATCHA", title:"Iced Chai Latte", sizes:["16 oz","24 oz"], rows:[
+      ["1 – Pull Espresso Shots","Skip this step","—","—","—"],
+      ["2a – Add Syrup","Maya Chai Concentrate","1 Pump","1.5 Pumps","Full Pumps into 8 oz or 16 oz measuring cups."],
+      ["2b – Add Monin","If requested","2 pumps","3 pumps","If syrup flavor is added do half the standard amount"],
+      ["3 – Add Milk","2% milk is the default","Fill cup ¾ full","Fill cup ¾ full","—"],
+      ["4 – Add Ice","Ice Scoop","Fill to top","Fill to top","Add directly to cup"],
+      ["5 – Finish & Engage","Pour chai mixture over ice.","—","—","¼ inch below rim"]
+    ], notes:"If syrup flavor is added do half the standard amount" },
+
+    { cat:"TEAS & MATCHA", title:"Iced Matcha Green Tea Latte", sizes:["16 oz","24 oz"], rows:[
+      ["1 – Pull Espresso Shots","Skip this step","—","—","—"],
+      ["2 – Mix Matcha Shot","Sift matcha to a Matcha Bowl (½ tsp scoop)","1 Scoop","2 Scoops","Add 2 oz hot water & whisk in a “W” motion until frothy (~15 seconds)."],
+      ["3 – Add Syrup","(if requested) Monin Pure Cane Sugar Syrup","2 Pumps","3 Pumps","Full Pumps into 8 oz or 16 oz measuring cups."],
+      ["4 – Add Milk","2% milk is the default","Fill cup ¾ full","Fill cup ¾ full","—"],
+      ["5 – Add Ice","Ice Scoop","Fill to top","Fill to top","Add directly to cup"],
+      ["6 – Finish & Engage","Pour Milk Mixture over ice & add Matcha Shot on top. Stir.","Stir","Stir","¼ inch below rim"]
+    ], notes:"Ask if customer wants sweetener." },
+
+    // LEMONADES, REFRESHERS & ENERGY (10)
+    { cat:"LEMONADES & ENERGY", title:"Lemonade / Flavored Lemonade", sizes:["16 oz","24 oz"], rows:[
+      ["1 – Squeeze Lemons","Pre-cut Lemons","2 Lemon Halves","3 Lemon Halves","—"],
+      ["2 – Add Sweetener","Monin Pure Cane Sugar Syrup","3 pumps","4 pumps","(half standard +1)"],
+      ["3 – Add Flavor","Monin Syrup (if Requested)","2 pumps","3 pumps","(half standard)"],
+      ["4 – Add Water","Sparkling or Flat","Fill cup ¾ full","Fill cup ¾ full","—"],
+      ["5 – Add Ice","Ice Scoop","Fill to top","Fill to top","—"],
+      ["6 – Finish & Engage","Stir & Lid.","Stir & Lid","Stir & Lid","¼ inch below rim"]
+    ], notes:"PRICKLY PEAR LEMONADE = Desert Pear/Prickly Pear flavor | LAVENDER LEMONADE = Lavender flavor" },
+
+    { cat:"LEMONADES & ENERGY", title:"Prickly Palmer", sizes:["16 oz","24 oz"], rows:[
+      ["1 – Squeeze Lemons","Pre-cut Lemons","1 Lemon Half","2 Lemon Halves","—"],
+      ["2 – Add Sweetener","Monin Pure Cane Syrup","2 pumps","3 pumps","—"],
+      ["3 – Add Flavor","Monin Desert Pear Syrup","1 pump","2 pumps","—"],
+      ["4 – Add Tea & Water","Iced Black Tea is Standard","¾ full","¾ full","Half tea, Half water, fill ¾ full"],
+      ["5 – Add Ice","Ice Scoop","Top off with ice","Top off with ice","—"],
+      ["6 – Finish & Engage","Stir & Lid.","Stir & Lid","Stir & Lid","—"]
+    ], notes:"ARNOLD PALMER = sub desert pear for pure cane" },
+
+    { cat:"LEMONADES & ENERGY", title:"Smartfruit Refreshers", sizes:["16 oz","24 oz"], rows:[
+      ["1 – Refresher Mix","Starfruit, Dragonfruit, or Kiwi","Pour to mix line","Pour a little over mix lines","Biggest size on shaker is 20oz so slight overpour accommodates 24oz size"],
+      ["2 – Water","Filtered Water (or Coconut Milk if specified)","Follow shaker lines","Follow shaker lines","—"],
+      ["3 – Add Ice","Ice Scoop","Fill to ice line","Fill to ice line","—"],
+      ["4 – Finish & Engage","Put lid on Smartfruit Plastic Shaker. Shake. Pour contents into cup.","Shake","Shake","—"]
+    ], notes:"Use Smartfruit Plastic Shaker. Water can be subbed out with coconut milk if specified." },
+
+    { cat:"LEMONADES & ENERGY", title:"Energy (Custom or Menu) / Lotus Energy", sizes:["16 oz","24 oz"], rows:[
+      ["1 – Add Lotus","Clear is standard","1 pump","1.5 pumps","80 mg caffeine per pump"],
+      ["2 – Add Flavor","Monin Syrup (Split evenly with # of flavors)","4 pumps","6 pumps","2 flavors: 2 / 3 pumps | 3 flavors: 1.3 / 2 pumps | 4 flavors: 1 / 1.3 pumps"],
+      ["3 – Add Sparkling Water","Sparkling Water","Fill cup ¾ full","Fill cup ¾ full","—"],
+      ["4 – Add Ice","Ice Scoop","Fill to top","Fill to top","—"],
+      ["5 – Finish & Engage","Stir & Lid.","Stir & Lid","Stir & Lid","¼ inch below rim"]
+    ], notes:"Lotus Info: PINK = Tart Cherry, Red Raspberry | BLUE = Blueberry Acai | CLEAR = Sugar Free no flavor notes. Source: Cascara, Ashwagandha, Green Coffee Extract." },
+
+    { cat:"LEMONADES & ENERGY", title:"Energy Twister (ET)", sizes:["16 oz","24 oz"], rows:[
+      ["1 – Lotus Energy","Lotus Concentrate","1 Pump","1.5 Pumps","—"],
+      ["2 – Syrups","Monin Syrups","4 Pumps","6 Pumps","Split evenly across flavors"],
+      ["3 – Powdered Base","Vanilla Soft Serve / Powdered Base","½ scoop","1 scoop","—"],
+      ["4 – Add Sparkling Water","Sparkling Water","8 oz line","12 oz line","Measure in blender"],
+      ["5 – Add Ice","Ice Scoop","16 oz line","24 oz line","—"],
+      ["6 – Blend","Lid & blend on #2","Blend #2","Blend #2","—"]
+    ], notes:"Blended Lotus Energy Twister standard." },
+
+    { cat:"LEMONADES & ENERGY", title:"Italian Soda (with Milk) / Sparkling Water", sizes:["16 oz","24 oz"], rows:[
+      ["1 – Add Flavor","Monin Syrup (Split evenly)","4 pumps","6 pumps","2 flavors: 2 / 3 pumps | 3 flavors: 1.3 / 2 pumps | 4 flavors: 1 / 1.3 pumps"],
+      ["2 – Add Sparkling Water","Sparkling Water","Fill cup ¾ full","Fill cup ¾ full","—"],
+      ["3 – Add Ice","Ice Scoop","Tan 12 oz Scoop","Brown 16 oz Scoop","—"],
+      ["4 – Add Milk (if requested)","Breve is standard","2 oz to top","2 oz to top","—"],
+      ["5 – Finish & Engage","Lid","Lid","Lid","¼ inch below rim"]
+    ], notes:"None" },
+
+    { cat:"LEMONADES & ENERGY", title:"Lotus Menu Builds #1: Hawaiian Vacation, Berry Night, Orange Sickle & Cram Session", sizes:["16 oz","24 oz"], rows:[
+      ["Hawaiian Vacation (Clear Lotus)","Banana + Orange + Peach + Strawberry","1 Pump each","1.5 Pumps each","4 flavors total (4p / 6p)"],
+      ["Berry Night (Clear Lotus)","Strawberry + Kiwi + Blue Raspberry + Watermelon","1 Pump each","1.5 Pumps each","4 flavors total (4p / 6p)"],
+      ["Orange Sickle (Clear Lotus)","Orange (3p / 4p) + Vanilla (1p / 2p) + Half & Half","3p Or / 1p Van","4p Or / 2p Van","Top with a Splash of Half + Half"],
+      ["Cram Session (Clear Lotus)","Melon + Almond + Raspberry","1.3 Pumps each","2 Pumps each","3 flavors total (4p / 6p)"]
+    ], notes:"All menu builds use 1 pump Lotus (16oz) / 1.5 pumps Lotus (24oz) + Sparkling Water ¾ full + Ice." },
+
+    { cat:"LEMONADES & ENERGY", title:"Lotus Menu Builds #2: American Pie, Peachy Queen, Desert Sunset, Sour Patch, P.O.G., Witches Brew & Emerald City", sizes:["16 oz","24 oz"], rows:[
+      ["American Pie","Green Apple + Cherry","2 Pumps each","3 Pumps each","2 flavors total"],
+      ["Peachy Queen","Peach + Orange","2 Pumps each","3 Pumps each","2 flavors total"],
+      ["Desert Sunset","Desert Pear + Strawberry + Watermelon","1.3 Pumps each","2 Pumps each","3 flavors total"],
+      ["Sour Patch (BLUE LOTUS)","Blue Raspberry + Green Apple + Cherry","1.3 Pumps each","2 Pumps each","Uses BLUE Lotus"],
+      ["P.O.G.","Passion Fruit + Orange + Guava","1.3 Pumps each","2 Pumps each","3 flavors total"],
+      ["Witches Brew (BLUE LOTUS)","Blue Raspberry + Desert Pear + Guava","1.3 Pumps each","2 Pumps each","Uses BLUE Lotus • Top with glitter!"],
+      ["Emerald City (BLUE LOTUS)","Blue Raspberry + Green Apple","2 Pumps each","3 Pumps each","Uses BLUE Lotus • Top with glitter!"]
+    ], notes:"Sour Patch, Witches Brew, and Emerald City use BLUE Lotus!" },
+
+    // ON-TAP (2)
+    { cat:"ON-TAP", title:"Cold Brew / Nitro Cold Brew", sizes:["16 oz","24 oz"], rows:[
+      ["1 – Pull Espresso Shots","Skip this step","—","—","—"],
+      ["2 – Add Syrup","Monin Syrup (if requested)","4 Pumps","6 Pumps","Full Pumps into cup"],
+      ["3a – Pour Cold Brew","Cold Brew on Tap","Fill cup ¾ full","Fill cup ¾ full","—"],
+      ["3b – Pour Nitro","Nitro Cold Brew","Fill full cup to top","16 oz ONLY","Nitro only available in 16 oz"],
+      ["4 – Add Ice","Fill with ice","Full Ice","Full Ice","Skip ice for Nitro Cold Brew!"]
+    ], notes:"Ask if any cream/milk or room for cream is needed. (Add up to 2 oz cold milk for no charge)" },
+
+    { cat:"ON-TAP", title:"Vanilla Sweet Cream Cold Brew / Nitro Cold Brew", sizes:["16 oz","24 oz"], rows:[
+      ["1 – Pull Espresso Shots","Skip this step","—","—","—"],
+      ["2 – Add Syrup","Monin Vanilla Syrup","2 Pumps","3 Pumps","Full Pumps into cup"],
+      ["3a – Pour Cold Brew","Cold Brew on Tap","Fill cup ¾ full","Fill cup ¾ full","—"],
+      ["3b – Pour Nitro","Nitro Cold Brew","Fill to 1” below rim","16 oz ONLY","Nitro only available in 16 oz"],
+      ["4 – Add Ice","Fill with ice to 1” below rim","1” below rim","1” below rim","Skip ice for Nitro Cold Brew!"],
+      ["5 – Finish & Engage","Top with Vanilla Sweet Cream. Lid with strawless lid.","VSC + Strawless","VSC + Strawless","¼ inch below rim"]
+    ], notes:"Code: UCB / RCB / NCB + VSC" },
+
+    // TWISTERS (8)
+    { cat:"TWISTERS", title:"Blended Coffee Twister Template (Custom)", sizes:["16 oz","24 oz"], rows:[
+      ["1 – Add Base","Neutral Base","2 pumps","3 pumps","Full pumps (*ALT MILKS +1 pump*)"],
+      ["2 – Add Syrup","Monin Syrup (Split desired flavors evenly)","4 Pumps","6 Pumps","Sauce: 1 full pump counts as 2 syrup pumps"],
+      ["3 – Pour Twister Concentrate","Made with 2% Milk","Fill to 8oz line","Fill to 12oz line","Add directly to blender"],
+      ["4 – Add Ice","Ice Scoop","16oz cup full","24oz cup full","Add directly to blender"],
+      ["5 – Blend & Finish","Lid & blend on #2. Pour into cup, top with whipped cream (if requested), and appropriate lid.","Blend #2","Blend #2","¼ inch below rim"]
+    ], notes:"*ALT MILKS +1 pump neutral base*" },
+
+    { cat:"TWISTERS", title:"Blended Coffee Twister WITHOUT Twister Mix", sizes:["16 oz","24 oz"], rows:[
+      ["1 – Add Base","Neutral Base","2 pumps","3 pumps","Full pumps (*ALT MILKS +1 pump*)"],
+      ["2 – Add Syrup","Monin Syrup (Split desired flavors evenly)","4 Pumps","6 Pumps","Sauce: 1 full pump counts as 2 syrup pumps"],
+      ["3a – Espresso","Pull Espresso Shots","2 Shots","3 Shots","—"],
+      ["3b – Pour Milk","Made with Desired Milk","Fill to 8oz line","Fill to 12oz line","Add Directly to blender"],
+      ["4 – Add Ice","Ice Scoop","16oz cup full","24oz cup full","Add Directly to blender"],
+      ["5 – Blend & Finish","Lid & blend on #2. Pour into cup, top with whipped cream (if requested) & lid.","Blend #2","Blend #2","¼ inch below rim"]
+    ], notes:"Use when Twister Mix is out or when making with Alt Milk / Decaf." },
+
+    { cat:"TWISTERS", title:"Mocha / Caramel / Vanilla Blended Coffee Twisters", sizes:["16 oz","24 oz"], rows:[
+      ["1 – Add Base","Neutral Base","2 pumps","3 pumps","Full pumps (*ALT MILKS +1 pump*)"],
+      ["2a – Mocha Twister (MT)","Monin Dark Chocolate Sauce","2 Pumps","3 Pumps","Top with WC, mocha drizzle & dome lid"],
+      ["2b – Caramel Twister (CT)","Monin Caramel Sauce","2 Pumps","3 Pumps","Top with WC, caramel drizzle & dome lid"],
+      ["2c – Vanilla Twister","Monin Vanilla Syrup","4 Pumps","6 Pumps","Top with WC & dome lid"],
+      ["3 – Twister Concentrate","Made with 2% Milk","Fill to 8oz line","Fill to 12oz line","Add to blender"],
+      ["4 – Ice & Blend","Fill 16oz/24oz cup full of ice &rarr; Blend on #2","Blend #2","Blend #2","¼ inch below rim"]
+    ], notes:"Codes: MT, CT, Flav-T" },
+
+    { cat:"TWISTERS", title:"Oreo Blended Coffee Twister (OT)", sizes:["16 oz","24 oz"], rows:[
+      ["1 – Add Base","Neutral Base","2 pumps","3 pumps","Full pumps (*ALT MILKS +1 pump*)"],
+      ["2a – Add Sauce","Monin Dark Chocolate Sauce","1 Pump","1.5 Pumps","—"],
+      ["2b – Add Sauce","Monin White Chocolate Sauce","1 pump","1.5 pumps","—"],
+      ["3 – Twister Concentrate","Made with 2% Milk","Fill to 8oz line","Fill to 12oz line","—"],
+      ["4 – Add Inclusions","Oreo Pieces","½ scoop","1 Scoop","—"],
+      ["5 – Ice & Blend","Fill 16oz/24oz cup full of ice &rarr; Blend on #2","Blend #2","Blend #2","Top with WC, chocolate drizzle & dome lid"]
+    ], notes:"Code: OT" },
+
+    { cat:"TWISTERS", title:"Fruit Smoothie / SmartFruit Smoothie Blended Twister", sizes:["16 oz","24 oz"], rows:[
+      ["1 – Add Smoothie Base","Blooming Berry (BS), Tropical Harmony (TS), Aloha Pineapple (AS), Harvest Greens (HS)","Fill to 4oz line","Fill to 6oz line","Pour directly into blender"],
+      ["2 – Add Water","Filtered Water","Fill to 8oz line (+4oz)","Fill to 12oz line (+6oz)","Use filtered water"],
+      ["3 – Add Ice","Ice Scoop","16oz cup/line","24oz cup/line","Add to blender"],
+      ["4 – Blend & Finish","Lid & blend on #2. Pour into the cup.","Blend #2","Blend #2","¼ inch below rim"]
+    ], notes:"Codes: BS, TS, AS, HS" },
+
+    { cat:"TWISTERS", title:"Blackberry Matcha Green Tea Twister", sizes:["16 oz","24 oz"], rows:[
+      ["1 – Add Base","Neutral Base","2 pumps","3 pumps","Full pumps (*ALT MILKS +1 pump*)"],
+      ["2 – Add Syrup","Monin RockMelon Cantaloupe Syrup","2 Pumps","3 Pumps","Full Pumps"],
+      ["3 – Add Milk","2% milk is the default","Fill to 8oz line","Fill to 12oz line","Use blender measurement lines"],
+      ["4 – Add Inclusions","Matcha Powder (½ tsp scoops)","1 Scoop","2 Scoops","—"],
+      ["5 – Add Ice & Blend","Fill 16oz/24oz cup full of ice &rarr; Blend on #2","Blend #2","Blend #2","Top with WC, blackberry drizzle & dome lid"]
+    ], notes:"Top with whipped cream, blackberry drizzle, and dome lid." },
+
+    // PREPARATION (4)
+    { cat:"PREPARATION", title:"Vanilla Sweet Cream (VSC) Preparation", sizes:["2L / 1L","325mL / Cup"], rows:[
+      ["Vanilla Syrup","2L: 350 mL | 1L: 175 mL","325mL: 8 pumps (56 mL)","Indiv Cup: 2 pumps","Indiv: Pour into clean shot tin"],
+      ["Heavy Cream","2L: 1 L | 1L: 500 mL","325mL: 160 mL","Indiv Cup: Fill ⅔ tin","—"],
+      ["2% Milk","2L: 650 mL | 1L: 325 mL","325mL: 105 mL","Indiv Cup: Fill rest (⅓)","Indiv: Stir & use ½ on top of drink"]
+    ], notes:"Pour into dedicated carafe, attach lid, invert at least twice to mix well. Label with shelf life: 24 hours. Store in refrigerator." },
+
+    { cat:"PREPARATION", title:"Whipped Cream Preparation", sizes:["1 Liter Canister","Standard"], rows:[
+      ["1 – Vanilla Syrup","Pump directly into 16 oz pitcher","8 pumps","Full pumps","—"],
+      ["2 – Heavy Cream","Fill steaming pitcher","To 16 oz line","—","—"],
+      ["3 – Combine & Chill","Pour Vanilla & Heavy Cream into CHILLED WC Canister.","Chill 20 mins","Below 40°F","Check temp before attaching lid (<40°F)"],
+      ["4 – Lid & Charge","Ensure rubber gasket is in place, attach lid, invert twice. Attach charger, shake vigorously, lay on side for 2 mins, remove charger.","2 mins on side","24 Hours","Label with shelf life: 24 hours"]
+    ], notes:"Remove the charger. Label with shelf life: 24 hours. Store in refrigerator and refrigerate after each use." },
+
+    { cat:"PREPARATION", title:"Twister Concentrate Preparation & Cold Foam", sizes:["Twister (4L)","Cold Foam"], rows:[
+      ["Twister Concentrate (4L Jug)","1 L Espresso Shots + 2% Milk to the top","1 L Shots","Fill 2% to 4L","Stir mixture. Label shelf life: Today + 4. Refrigerate."],
+      ["Cold Foam (Froth Blender)","2 pumps Syrup (NOT sauce) + 5 oz Non-Fat Milk (or above blade)","2 pumps Syrup","5 oz Non-Fat","Blend on #1. Use immediately. Re-blend on #1 if separated."]
+    ], notes:"Only use syrups for Cold Foam — sauce does not work!" }
+  ];
